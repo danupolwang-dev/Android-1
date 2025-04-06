@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- แสดงยอดค่าใช้จ่ายรายวัน -->
+    <TextView
+        android:id="@+id/tv_daily_expense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ยอดค่าใช้จ่ายรายวัน"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- แสดงยอดค่าใช้จ่ายรายเดือน -->
+    <TextView
+        android:id="@+id/tv_monthly_expense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ยอดค่าใช้จ่ายรายเดือน"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- ปุ่มสำหรับเพิ่มรายการค่าใช้จ่าย -->
+    <Button
+        android:id="@+id/btn_add_expense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="เพิ่มรายการค่าใช้จ่าย"/>
+
+    <Button
+        android:id="@+id/btn_expense_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ดูรายการค่าใช้จ่าย" />
+
+
+    <!-- พื้นที่สำหรับกราฟสรุปค่าใช้จ่าย (Placeholder) -->
+    <TextView
+        android:id="@+id/tv_chart_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:text="กราฟสรุปค่าใช้จ่าย (Placeholder)"
+        android:gravity="center"
+        android:background="#DDDDDD"
+        android:layout_marginTop="24dp"/>
+</LinearLayout>

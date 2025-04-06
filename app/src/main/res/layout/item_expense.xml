@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="8dp"
+    android:layout_margin="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- ชื่อรายการ -->
+        <TextView
+            android:id="@+id/tvExpenseName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ชื่อรายการ"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
+        <!-- จำนวนเงิน -->
+        <TextView
+            android:id="@+id/tvExpenseAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="จำนวนเงิน"
+            android:textSize="14sp"/>
+
+        <!-- หมวดหมู่ และ วันที่ -->
+        <TextView
+            android:id="@+id/tvExpenseCategoryDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="หมวดหมู่ | วันที่"
+            android:textSize="14sp"/>
+
+        <!-- หมายเหตุ (ถ้ามี) -->
+        <TextView
+            android:id="@+id/tvExpenseNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="หมายเหตุ"
+            android:textSize="14sp"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
