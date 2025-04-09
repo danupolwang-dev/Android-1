@@ -19,15 +19,17 @@ import java.util.List;
 public class ExpenseListActivity extends AppCompatActivity {
 
     private RecyclerView rvExpenses;
+    private List<Expense> mExpenses;
     private ExpenseAdapter expenseAdapter;
     private List<Expense> expenseList;
     private FirebaseFirestore db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense_list);
-
+        mExpenses = new ArrayList<>();
         rvExpenses = findViewById(R.id.rvExpenses);
         rvExpenses.setLayoutManager(new LinearLayoutManager(this));
         expenseList = new ArrayList<>();

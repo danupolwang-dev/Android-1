@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_home) {
             selectedFragment = new Home();
         } else if (id == R.id.nav_add_expense) {
-            selectedFragment = new AddExpense();
+            selectedFragment = new Fragment();
         } else if (id == R.id.nav_list) {
             selectedFragment = new ExpenseList();
         } else if (id == R.id.nav_statistics) {
