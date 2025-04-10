@@ -3,39 +3,43 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
     tools:context=".MainActivity">
 
+    <!-- เนื้อหาหลักของ Activity -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <!-- Toolbar ด้านบน -->
         <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
             android:id="@+id/toolbar"
-            android:elevation="4dp"
-            android:background="@color/purple"/>
-
-        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/activity_main"/>
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/purple"
+            android:elevation="4dp" />
+
+        <!-- Container สำหรับ Fragment ที่จะแทนที่ใน MainActivity -->
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
+    <!-- NavigationView สำหรับ Navigation Drawer -->
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/nav_view"
         android:layout_gravity="start"
         app:menu="@menu/nav_menu"
         app:itemIconTint="@color/purple"
-        app:itemTextColor="@color/purple"/>
+        app:itemTextColor="@color/purple" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

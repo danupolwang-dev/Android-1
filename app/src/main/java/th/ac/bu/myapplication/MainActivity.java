@@ -34,7 +34,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // เปิดหน้า Home เมื่อเปิดแอปครั้งแรก
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.activity_main, new Home()).commit();
+<<<<<<< HEAD
+<<<<<<< HEAD
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+=======
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Home()).commit();
+>>>>>>> 7e612c6dae86244e0e689f262b6167a85841303d
+=======
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Home()).commit();
+>>>>>>> 7e612c6dae86244e0e689f262b6167a85841303d
             navigationView.setCheckedItem(R.id.nav_home);
         }
     }
@@ -45,20 +53,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Fragment selectedFragment = null;
 
         if (id == R.id.nav_home) {
-            selectedFragment = new Home();
+            selectedFragment = new HomeFragment();
         } else if (id == R.id.nav_add_expense) {
-            selectedFragment = new AddExpense();
+            selectedFragment = new AddExpenseFragment();
         } else if (id == R.id.nav_list) {
-            selectedFragment = new ExpenseList();
+            selectedFragment = new ExpenseListFragment();
         } else if (id == R.id.nav_statistics) {
-            selectedFragment = new Statistic();
+            selectedFragment = new StatisticFragment();
         } else if (id == R.id.nav_logout) {
             Toast.makeText(this, "Logout!", Toast.LENGTH_SHORT).show();
+            // อาจเพิ่มฟังก์ชัน Logout ที่นี่ เช่น FirebaseAuth.getInstance().signOut();
         }
 
         if (selectedFragment != null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.activity_main, selectedFragment)
+                    .replace(R.id.fragment_container, selectedFragment)
                     .commit();
         }
 

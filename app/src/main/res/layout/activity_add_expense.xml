@@ -1,60 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/et_expense_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:hint="ชื่อรายการ" />
 
-        <!-- ชื่อรายการค่าใช้จ่าย -->
-        <EditText
-            android:id="@+id/et_expense_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="ชื่อรายการ"
-            android:inputType="text" />
+    <EditText
+        android:id="@+id/et_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="จำนวนเงิน"
+        android:inputType="number" />
 
-        <!-- จำนวนเงิน -->
-        <EditText
-            android:id="@+id/et_amount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="จำนวนเงิน"
-            android:inputType="numberDecimal" />
+    <EditText
+        android:id="@+id/et_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="หมวดหมู่" />
 
-        <!-- หมวดหมู่ -->
-        <EditText
-            android:id="@+id/et_category"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="หมวดหมู่"
-            android:inputType="text" />
+    <EditText
+        android:id="@+id/et_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="วันที่ (dd/mm/yyyy)" />
 
-        <!-- วันที่ -->
-        <EditText
-            android:id="@+id/et_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="วันที่ (dd/mm/yyyy)"
-            android:inputType="date" />
+    <EditText
+        android:id="@+id/et_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="หมายเหตุ (option)" />
 
-        <!-- หมายเหตุเพิ่มเติม -->
-        <EditText
-            android:id="@+id/et_note"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="หมายเหตุเพิ่มเติม"
-            android:inputType="textMultiLine" />
+    <Button
+        android:id="@+id/btn_save_expense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="บันทึก" />
 
-        <!-- ปุ่มบันทึกข้อมูล -->
-        <Button
-            android:id="@+id/btn_save_expense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="บันทึก" />
-    </LinearLayout>
-</ScrollView>
+</LinearLayout>
