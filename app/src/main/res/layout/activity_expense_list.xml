@@ -14,10 +14,4 @@
         android:layout_centerInParent="true"
         android:textColor="@color/purple"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvExpenses"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-
 </RelativeLayout>

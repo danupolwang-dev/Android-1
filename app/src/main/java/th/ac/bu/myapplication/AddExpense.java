@@ -1,83 +1,95 @@
 package th.ac.bu.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import androidx.fragment.app.Fragment;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddExpense extends AppCompatActivity {
+public class AddExpense extends Fragment {
 
-  private EditText etExpenseName, etAmount, etCategory, etDate, etNote;
-  private Button btnSaveExpense;
-  private FirebaseFirestore db;
+    private EditText etExpenseName, etAmount, etCategory, etDate, etNote;
+    private Button btnSaveExpense;
+    private FirebaseFirestore db;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_add_expense);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.activity_add_expense, container, false);
 
-    // ผูก View กับ Layout
-    etExpenseName = findViewById(R.id.et_expense_name);
-    etAmount = findViewById(R.id.et_amount);
-    etCategory = findViewById(R.id.et_category);
-    etDate = findViewById(R.id.et_date);
-    etNote = findViewById(R.id.et_note);
-    btnSaveExpense = findViewById(R.id.btn_save_expense);
+        // Bind views
+        etExpenseName = view.findViewById(R.id.et_expense_name);
+        etAmount = view.findViewById(R.id.et_amount);
+        etCategory = view.findViewById(R.id.et_category);
+        etDate = view.findViewById(R.id.et_date);
+        etNote = view.findViewById(R.id.et_note);
+        btnSaveExpense = view.findViewById(R.id.btn_save_expense);
 
-    // เรียกใช้งาน Firestore
-    db = FirebaseFirestore.getInstance();
+        // Initialize Firestore
+        db = FirebaseFirestore.getInstance();
 
-    btnSaveExpense.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
+        btnSaveExpense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get data from EditText
+                String expenseName = etExpenseName.getText().toString().trim();
+                String amountStr = etAmount.getText().toString().trim();
+                String category = etCategory.getText().toString().trim();
+                String date = etDate.getText().toString().trim();
+                String note = etNote.getText().toString().trim();
 
-        // ดึงข้อมูลจาก EditText
-        String expenseName = etExpenseName.getText().toString().trim();
-        String amountStr = etAmount.getText().toString().trim();
-        String category = etCategory.getText().toString().trim();
-        String date = etDate.getText().toString().trim();
-        String note = etNote.getText().toString().trim();
+                // Basic validation
+                if(expenseName.isEmpty() || amountStr.isEmpty() || category.isEmpty() || date.isEmpty()){
+                    Toast.makeText(getContext(), "กรุณากรอกข้อมูลให้ครบถ้วน", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-        // ตรวจสอบข้อมูลพื้นฐาน
-        if(expenseName.isEmpty() || amountStr.isEmpty() || category.isEmpty() || date.isEmpty()){
-          Toast.makeText(AddExpense.this, "กรุณากรอกข้อมูลให้ครบถ้วน", Toast.LENGTH_SHORT).show();
-          return;
-        }
+                // Convert amount from String to Long
+                Long amountValue;
+                try {
+                    amountValue = Long.parseLong(amountStr);
+                } catch(NumberFormatException e) {
+                    Toast.makeText(getContext(), "กรุณากรอกจำนวนเงินให้ถูกต้อง", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-        // แปลงค่า amount จาก String เป็น Long
-        Long amountValue;
-        try {
-          amountValue = Long.parseLong(amountStr);
-        } catch(NumberFormatException e) {
-          Toast.makeText(AddExpense.this, "กรุณากรอกจำนวนเงินให้ถูกต้อง", Toast.LENGTH_SHORT).show();
-          return;
-        }
+                // Create Map to store expense data
+                Map<String, Object> expense = new HashMap<>();
+                expense.put("name", expenseName);
+                expense.put("amount", amountValue);
+                expense.put("category", category);
+                expense.put("date", date);
+                expense.put("note", note);
 
-        // สร้าง Map เพื่อเก็บข้อมูลค่าใช้จ่าย
-        Map<String, Object> expense = new HashMap<>();
-        expense.put("name", expenseName);
-        expense.put("amount", amountValue); // บันทึกเป็น Long
-        expense.put("category", category);
-        expense.put("date", date);
-        expense.put("note", note);
+                // Save to Firestore
+                db.collection("expenses")
+                        .add(expense)
+                        .addOnSuccessListener(documentReference -> {
+                            Toast.makeText(getContext(), "บันทึกข้อมูลเรียบร้อย", Toast.LENGTH_SHORT).show();
+                            // Clear fields or navigate back
+                            clearFields();
+                        })
+                        .addOnFailureListener(e -> {
+                            Toast.makeText(getContext(), "บันทึกข้อมูลล้มเหลว: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        });
+            }
+        });
 
-        // บันทึกข้อมูลลงใน Firestore
-        db.collection("expenses")
-                .add(expense)
-                .addOnSuccessListener(documentReference -> {
-                  Toast.makeText(AddExpense.this, "บันทึกข้อมูลเรียบร้อย", Toast.LENGTH_SHORT).show();
-                  // เคลียร์ฟิลด์หรือกลับไปยังหน้าก่อนหน้า
-                  finish();
-                })
-                .addOnFailureListener(e -> {
-                  Toast.makeText(AddExpense.this, "บันทึกข้อมูลล้มเหลว: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
-      }
-    });
-  }
+        return view;
+    }
+
+    private void clearFields() {
+        etExpenseName.setText("");
+        etAmount.setText("");
+        etCategory.setText("");
+        etDate.setText("");
+        etNote.setText("");
+    }
 }
