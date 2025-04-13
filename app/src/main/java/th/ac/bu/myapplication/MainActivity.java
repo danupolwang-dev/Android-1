@@ -34,15 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // เปิดหน้า Home เมื่อเปิดแอปครั้งแรก
         if (savedInstanceState == null) {
-<<<<<<< HEAD
-<<<<<<< HEAD
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
-=======
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Home()).commit();
->>>>>>> 7e612c6dae86244e0e689f262b6167a85841303d
-=======
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Home()).commit();
->>>>>>> 7e612c6dae86244e0e689f262b6167a85841303d
             navigationView.setCheckedItem(R.id.nav_home);
         }
     }

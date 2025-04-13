@@ -40,6 +40,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
 
     public static class ExpenseViewHolder extends RecyclerView.ViewHolder {
         TextView tvExpenseName, tvExpenseAmount, tvExpenseCategoryDate, tvExpenseNote;
+
         public ExpenseViewHolder(@NonNull View itemView) {
             super(itemView);
             tvExpenseName = itemView.findViewById(R.id.tvExpenseName);
@@ -48,12 +49,4 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
             tvExpenseNote = itemView.findViewById(R.id.tvExpenseNote);
         }
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 7e612c6dae86244e0e689f262b6167a85841303d
-=======
-}
->>>>>>> 7e612c6dae86244e0e689f262b6167a85841303d

@@ -31,15 +31,7 @@ public class AddExpenseFragment extends Fragment {
                            @Nullable ViewGroup container,
                            @Nullable Bundle savedInstanceState) {
     // ใช้ไฟล์ layout ที่เหมาะกับ Fragment เช่น R.layout.fragment_add_expense
-<<<<<<< HEAD
-<<<<<<< HEAD
     return inflater.inflate(R.layout.fragment_add_expense, container, false);
-=======
-    return inflater.inflate(R.layout.activity_add_expense, container, false);
->>>>>>> 7e612c6dae86244e0e689f262b6167a85841303d
-=======
-    return inflater.inflate(R.layout.activity_add_expense, container, false);
->>>>>>> 7e612c6dae86244e0e689f262b6167a85841303d
   }
 
   // หลังจาก View ถูกสร้างเสร็จ onViewCreated จะถูกเรียก
@@ -97,15 +89,9 @@ public class AddExpenseFragment extends Fragment {
                 // ตัวอย่าง: กลับไปหน้า HomeFragment หลังบันทึกเสร็จ
                 if (getActivity() != null) {
                   getActivity().getSupportFragmentManager().beginTransaction()
-<<<<<<< HEAD
-<<<<<<< HEAD
                           .replace(R.id.fragment_container, new ExpenseListFragment())
-=======
                           .replace(R.id.fragment_container, new HomeFragment())
->>>>>>> 7e612c6dae86244e0e689f262b6167a85841303d
-=======
                           .replace(R.id.fragment_container, new HomeFragment())
->>>>>>> 7e612c6dae86244e0e689f262b6167a85841303d
                           .commit();
                 }
               })
