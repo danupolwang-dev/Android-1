@@ -21,7 +21,7 @@ public class SignUp extends AppCompatActivity {
     private FirebaseAuth auth;
     private EditText signupEmail, signupPassword, signupconfirmPassword;
     private Button signupButton;
-    private TextView loginRedirectText;
+    private Button loginRedirectButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class SignUp extends AppCompatActivity {
         signupPassword = findViewById(R.id.signup_password);
         signupconfirmPassword = findViewById(R.id.signup_confirm_password);
         signupButton = findViewById(R.id.signup_button);
-        loginRedirectText = findViewById(R.id.loginRedirectText);
+        loginRedirectButton = findViewById(R.id.loginRedirectButton);
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,10 +60,17 @@ public class SignUp extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(SignUp.this, "SignUp Successful", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(SignUp.this, Login.class));
-                            } else {
-                                Toast.makeText(SignUp.this, "SignUp Failed" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                                // ✅ ออกจากระบบก่อน
+                                FirebaseAuth.getInstance().signOut();
+
+                                // ✅ เปิดหน้า Login และเคลียร์ stack
+                                Intent intent = new Intent(SignUp.this, Login.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                                finish();
                             }
+
                         }
                     });
                 }
@@ -71,12 +78,16 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
-        loginRedirectText.setOnClickListener(new View.OnClickListener() {
+        loginRedirectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SignUp.this, Login.class));
+                Intent intent = new Intent(SignUp.this, Login.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
             }
         });
+
 
     }
 }
